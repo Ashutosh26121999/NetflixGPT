@@ -1,0 +1,38 @@
+{
+  "name": "netflix-gpt",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "start": "vite",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "@testing-library/dom": "^10.4.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "identity-obj-proxy": "^3.0.0",
+    "jsdom": "^26.0.0",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^4.0.0",
+    "vite": "^6.0.5",
+    "vitest": "^3.0.4"
+  }
+}
