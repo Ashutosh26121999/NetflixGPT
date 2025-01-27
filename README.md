@@ -3,7 +3,8 @@
 - React+Vit templet
 - Config tailwind css
 - Vitest for testing take help from google
--
+- Login form
+- Signup form
 
 #### Featcher
 

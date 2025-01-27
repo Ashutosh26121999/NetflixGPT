@@ -1,5 +1,11 @@
+import Body from "./componenets/Body";
+
 function App() {
-  return <div className='bg-blue-500  fill-sky-300 text-6xl'>Hello</div>;
+  return (
+    <div>
+      <Body />
+    </div>
+  );
 }
 
 export default App;
