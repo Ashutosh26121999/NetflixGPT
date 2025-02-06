@@ -1,10 +1,108 @@
-import {useState} from "react";
+import {useRef, useState} from "react";
 import Header from "./Header";
-
+import {checkValidation} from "../utils/validation";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import {auth} from "../utils/firebase";
+import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {addUser} from "../utils/Redux/userSlice";
 const Login = () => {
   const [signUp, setSignUp] = useState(false);
+  const email = useRef(null);
+  const password = useRef(null);
+  const name = useRef(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handletoggle = () => {
     setSignUp(!signUp);
+    setErrorMessage(null);
+  };
+  const signUpFunction = () => {
+    createUserWithEmailAndPassword(
+      auth,
+      email.current.value,
+      password.current.value,
+    )
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log("Firebase user", user);
+        updateProfile(user, {
+          displayName: name.current.value,
+          photoURL: "https://avatars.githubusercontent.com/u/40879118?v=4",
+        })
+          .then(() => {
+            // Profile updated!
+            // ...
+            const {uid, email, displayName, photoURL} = auth.currentUser;
+
+            dispatch(
+              addUser({
+                uid: uid,
+                email: email,
+                displayName: displayName,
+                photoURL: photoURL,
+              }),
+            );
+            navigate("/browse");
+          })
+          .catch((error) => {
+            // An error occurred
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setErrorMessage(
+              "Profile Update error--" + errorCode + "-----" + errorMessage,
+            );
+          });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage("Signup error--" + errorCode + "-----" + errorMessage);
+      });
+  };
+  const loginFunction = () => {
+    signInWithEmailAndPassword(
+      auth,
+      email.current.value,
+      password.current.value,
+    )
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        navigate("/browse");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage("Login error--" + errorCode + "-----" + errorMessage);
+      });
+  };
+  const handleButtonClick = () => {
+    setErrorMessage(() => "");
+    if (signUp && (!name.current || !name.current.value.trim())) {
+      return setErrorMessage("Full name is required");
+    }
+    const validationResult = checkValidation(
+      email.current.value,
+      password.current.value,
+      signUp && name.current.value,
+    );
+    if (validationResult) {
+      return setErrorMessage(validationResult);
+    }
+    if (signUp) {
+      // Sign up logic
+      signUpFunction();
+    } else {
+      // Login logic
+      loginFunction();
+    }
   };
   return (
     <div className='relative h-screen bg-black'>
@@ -27,27 +125,39 @@ const Login = () => {
         <h2 className='text-3xl font-bold mb-6'>
           {signUp ? "Sign Up" : "Sign In"}
         </h2>
-        <form className='flex flex-col gap-4'>
+        <form
+          className='flex flex-col gap-4'
+          onSubmit={(e) => e.preventDefault()}
+        >
           {signUp && (
             <input
               type='text'
               placeholder='Full Name'
               className='p-3 rounded-md bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500'
+              ref={name}
             />
           )}
           <input
             type='text'
             placeholder='Email or phone number'
             className='p-3 rounded-md bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500'
+            ref={email}
           />
           <input
             type='password'
             placeholder='Password'
             className='p-3 rounded-md bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500'
+            ref={password}
           />
+          {errorMessage && (
+            <p className='text-red-500 text-md mt-2 text-wrap text-justify font-bold '>
+              {errorMessage}
+            </p>
+          )}
           <button
             type='submit'
             className='bg-red-600 hover:bg-red-700 py-3 rounded-md font-semibold'
+            onClick={handleButtonClick}
           >
             {signUp ? "Sign Up" : "Sign In"}
           </button>

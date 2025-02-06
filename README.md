@@ -3,8 +3,17 @@
 - React+Vit templet
 - Config tailwind css
 - Vitest for testing take help from google
+- routing
 - Login form
 - Signup form
+- form validation
+- useRef hook
+- Firebase setup
+- deploying app to production
+- create siginup user account
+- Impliment Sign In user API
+- impliment Sign up user API
+- Create redux Store and Slice
 
 #### Featcher
 
