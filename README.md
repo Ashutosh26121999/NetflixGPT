@@ -14,6 +14,19 @@
 - Impliment Sign In user API
 - impliment Sign up user API
 - Create redux Store and Slice
+- update profile
+- BugFixed: If user alredy login goto profile page
+- Bugfixed : if user not login always go to login page
+- unsecribed to the on auth chage callback on unmount
+- create constaint for statice value
+- Setup TMDB account
+- fetch data of movies in browser componenet
+- creating maincontainer
+- creating movie slice
+- fetch movie icon and trailer
+- store these data in redux
+- create custom hook for moview trailer and icons
+- style and optimzed home page
 
 #### Featcher
 

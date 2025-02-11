@@ -1,19 +1,45 @@
-import {signOut} from "firebase/auth";
+import {onAuthStateChanged, signOut} from "firebase/auth";
 import {auth} from "../utils/firebase";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {DEFULT_IMAGE} from "../utils/constentValue";
+import {useEffect} from "react";
+import {addUser, removeUser} from "../utils/Redux/userSlice";
 
 const Header = () => {
   // get user from store
   const {email, photoURL, displayName} = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const {uid, email, displayName, photoURL} = user;
+
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          }),
+        );
+        navigate("/browse");
+      } else {
+        // User is signed out
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+    // Unsubscribe from the authentication state changes on unmount
+    return () => unsubscribe();
+  }, []);
   const signOutFunction = () => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
         console.log("Sign out");
-        navigate("/");
       })
       .catch((error) => {
         // An error happened.
@@ -23,9 +49,9 @@ const Header = () => {
   return (
     <div className='absolute top-0 left-0 w-screen py-2 px-8 bg-gradient-to-b from-black to-transparent'>
       <img
-        className='w-45'
-        src='https://help.nflxext.com/helpcenter/OneTrust/oneTrust_production/consent/87b6a5c0-0104-4e96-a291-092c11350111/01938dc4-59b3-7bbc-b635-c4131030e85f/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png'
-        alt='netflix logo'
+        className='w-40'
+        src='https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png'
+        alt='Netflix Logo'
       />
       {/* user icon container */}
       {email && (
