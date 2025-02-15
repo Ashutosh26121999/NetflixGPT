@@ -1,7 +1,7 @@
 import {useSelector} from "react-redux";
 import useMovieTrailer from "../customHooks/useMovieTrailer";
 
-function VideoBackground({movieId}) {
+function VideoBackground({movieId = "0"}) {
   const [loading] = useMovieTrailer({movieId});
   // fetch movie trailer from RTK
   const {trailerVideo} = useSelector((state) => state?.movies);

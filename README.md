@@ -27,6 +27,10 @@
 - store these data in redux
 - create custom hook for moview trailer and icons
 - style and optimzed home page
+- create movie list
+- create move card
+- ceate custom hook for popular upcomming ,top rated movies
+- create a secondy component for diffrent category of movies
 
 #### Featcher
 

@@ -14,3 +14,4 @@ export const MOVIE_API_OPTION = {
 };
 export const TMDB_API_KEY = "2756e52dafe133747147c6116cf9ea6d";
 export const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original/";
+export const MOVIE_POSTER_URL = "https://image.tmdb.org/t/p/w780";

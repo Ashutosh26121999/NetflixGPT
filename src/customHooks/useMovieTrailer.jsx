@@ -22,7 +22,6 @@ function useMovieTrailer({movieId}) {
         : videosData.results[0];
 
       dispatch(addTrailerVideo(finalTrailer));
-      console.log("Final Trailer Data---->", finalTrailer);
     } catch (error) {
       console.log("Error in fetching movie trailer--->", error);
     } finally {

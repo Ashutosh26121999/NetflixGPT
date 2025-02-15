@@ -4,12 +4,12 @@ import {mergeArray} from "../commanUtils";
 const moviesSlice = createSlice({
   name: "movies",
   initialState: {
-    nowPlayingMovies: null,
-    popularMovies: null,
-    topRatedMovies: null,
-    upcomingMovies: null,
-    trailerVideo: null,
-    movieIcon: null,
+    nowPlayingMovies: [],
+    popularMovies: [],
+    topRatedMovies: [],
+    upcomingMovies: [],
+    trailerVideo: [],
+    movieIcon: [],
   },
   reducers: {
     addNowPlayingMovies: (state, action) => {
