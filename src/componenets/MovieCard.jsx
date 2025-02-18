@@ -1,7 +1,9 @@
 // MovieCard.jsx
+import {useTranslation} from "react-i18next";
 import {MOVIE_POSTER_URL} from "../utils/constentValue";
 
 function MovieCard({moviePoster, movieTitle}) {
+  const {t} = useTranslation();
   return (
     <div className='min-w-[150px] md:min-w-[180px] lg:min-w-[220px] relative transform transition-transform duration-300 ease-in-out hover:scale-125 hover:z-20 group'>
       <div className='rounded-lg overflow-hidden shadow-xl hover:shadow-2xl'>
@@ -11,7 +13,7 @@ function MovieCard({moviePoster, movieTitle}) {
               ? `${MOVIE_POSTER_URL}${moviePoster}`
               : "/placeholder-movie.jpg" // Add a placeholder image
           }
-          alt={movieTitle || "Movie poster"}
+          alt={movieTitle || t("moviePosterAlt")}
           className='w-full h-auto aspect-[2/3] object-cover'
           loading='lazy'
         />

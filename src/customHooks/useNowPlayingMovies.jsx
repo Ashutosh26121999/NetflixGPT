@@ -18,7 +18,7 @@ function useNowPlayingMovies({pageNum = 1}) {
       const moviesData = await response.json();
       dispatch(addNowPlayingMovies(moviesData.results));
     } catch (error) {
-      console.log("Error In Api call of now playing movies", error);
+      console.error("Error In Api call of now playing movies", error);
     } finally {
       setLoading(false);
     }

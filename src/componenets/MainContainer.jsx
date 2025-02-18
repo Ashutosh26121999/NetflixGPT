@@ -21,7 +21,6 @@ function MainContainer() {
           newIndex = Math.floor(Math.random() * movies.length);
         } while (newIndex === prevIndex); // Avoid showing the same movie consecutively
 
-        console.log("New Movie Index:", newIndex);
         return newIndex;
       });
     }, 5 * 60 * 1000); // 5 minute interval

@@ -1,10 +1,12 @@
 import useMovieIcon from "../customHooks/useMovieIcon";
 import {useSelector} from "react-redux";
 import {BASE_IMAGE_URL} from "../utils/constentValue";
+import {useTranslation} from "react-i18next";
 
 function VideoDescription({title, overview, movieId}) {
   const [loading] = useMovieIcon({movieId});
   const {movieIcon} = useSelector((state) => state?.movies);
+  const {t} = useTranslation();
 
   return (
     <div className='bg-gradient-to-b from-black to-transparent'>
@@ -13,7 +15,7 @@ function VideoDescription({title, overview, movieId}) {
         {movieIcon && (
           <img
             src={`${BASE_IMAGE_URL}${movieIcon}`}
-            alt='Movie Logo'
+            alt={t("movieLogoAlt")}
             className='h-24 mb-4'
           />
         )}
@@ -25,10 +27,10 @@ function VideoDescription({title, overview, movieId}) {
         {/* Action Buttons */}
         <div className='flex gap-4'>
           <button className='bg-white text-black px-6 md:px-8 py-2 md:py-3 text-lg font-semibold rounded-md hover:bg-opacity-80 transition-all'>
-            ▶ Play
+            {` ▶ ${t("playButton")}`}
           </button>
           <button className='hidden md:inline-block bg-gray-500 text-white px-6 md:px-8 py-2 md:py-3 text-lg font-semibold bg-opacity-50 rounded-md hover:bg-opacity-80 transition-all'>
-            ⓘ More Info
+            {` ⓘ ${t("moreInfoButton")}`}
           </button>
         </div>
       </div>

@@ -18,7 +18,7 @@ function useUpcomingMovies({pageNum = 1}) {
       const moviesData = await response.json();
       dispatch(addUpcomingMovies(moviesData.results));
     } catch (error) {
-      console.log("Error In Api call of Top Rated movies", error);
+      console.error("Error In Api call of Top Rated movies", error);
     } finally {
       setLoading(false);
     }

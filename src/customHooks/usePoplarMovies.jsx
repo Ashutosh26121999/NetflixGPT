@@ -18,7 +18,7 @@ function usePoplarMovies({pageNum = 1}) {
       const moviesData = await response.json();
       dispatch(addPopularMovies(moviesData.results));
     } catch (error) {
-      console.log("Error In Api call of poplar movies", error);
+      console.error("Error In Api call of poplar movies", error);
     } finally {
       setLoading(false);
     }

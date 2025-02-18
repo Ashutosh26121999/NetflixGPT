@@ -31,6 +31,9 @@
 - create move card
 - ceate custom hook for popular upcomming ,top rated movies
 - create a secondy component for diffrent category of movies
+- create GPT search
+- Add MultiLanguage Support in website
+- Added Multipal Language
 
 #### Featcher
 

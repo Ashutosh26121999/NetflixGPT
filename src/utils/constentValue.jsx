@@ -15,3 +15,10 @@ export const MOVIE_API_OPTION = {
 export const TMDB_API_KEY = "2756e52dafe133747147c6116cf9ea6d";
 export const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original/";
 export const MOVIE_POSTER_URL = "https://image.tmdb.org/t/p/w780";
+export const LANGUAGES = [
+  {label: "English", code: "en"},
+  {label: "Hindi", code: "hi"},
+  {label: "Polish", code: "pl"},
+  {label: "German", code: "de"},
+  {label: "French", code: "fr"},
+];
