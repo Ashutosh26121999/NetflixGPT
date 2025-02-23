@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {addPopularMovies} from "../utils/Redux/moviesSlice";
 import {MOVIE_API_OPTION} from "../utils/constentValue";
 
@@ -7,7 +7,7 @@ function usePoplarMovies({pageNum = 1}) {
   // fetch popular palying movies data from api
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-
+  const popularMovies = useSelector((state) => state?.movies?.popularMovies);
   const getMovies = async () => {
     try {
       setLoading(true);
@@ -24,7 +24,7 @@ function usePoplarMovies({pageNum = 1}) {
     }
   };
   useEffect(() => {
-    getMovies();
+    popularMovies.length === 0 && getMovies();
   }, [pageNum]);
   return [loading];
 }

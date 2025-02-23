@@ -34,6 +34,11 @@
 - create GPT search
 - Add MultiLanguage Support in website
 - Added Multipal Language
+- add gpt search function (currtly not work)
+- Resposnive UI
+- Search Show reult of GPT
+- Secure Senstive key Data
+- The End
 
 #### Featcher
 

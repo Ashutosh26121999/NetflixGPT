@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {DEFULT_IMAGE} from "../utils/constentValue";
 import {useEffect} from "react";
 import {addUser, removeUser} from "../utils/Redux/userSlice";
-import {toggleGPTSearch} from "../utils/Redux/gptSlice";
+import {toggleGPTSearch, clearGPTSearchResult} from "../utils/Redux/gptSlice";
 import LanguageDropDown from "./LanguageDropDown";
 import {useTranslation} from "react-i18next";
 
@@ -51,6 +51,7 @@ const Header = () => {
       });
   };
   const handleGPTSearch = () => {
+    dispatch(clearGPTSearchResult());
     // gpt search toggale switcher
     dispatch(toggleGPTSearch());
   };

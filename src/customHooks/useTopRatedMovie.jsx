@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {MOVIE_API_OPTION} from "../utils/constentValue";
 import {addTopRatedMovies} from "../utils/Redux/moviesSlice";
 
@@ -7,7 +7,7 @@ function useTopRatedMovie({pageNum = 1}) {
   // fetch top rated  movies data from api
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-
+  const topRatedMovies = useSelector((state) => state?.movies?.topRatedMovies);
   const getMovies = async () => {
     try {
       setLoading(true);
@@ -24,7 +24,7 @@ function useTopRatedMovie({pageNum = 1}) {
     }
   };
   useEffect(() => {
-    getMovies();
+    topRatedMovies.length === 0 && getMovies();
   }, [pageNum]);
   return [loading];
 }

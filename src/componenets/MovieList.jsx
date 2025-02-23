@@ -1,7 +1,7 @@
 import MovieCard from "./MovieCard";
 
 // MovieList.jsx
-function MovieList({title, movies}) {
+function MovieList({title = null, movies}) {
   return (
     <div className='px-4 md:px-8 lg:px-12 py-'>
       <h2 className='text-white text-xl md:text-2xl lg:text-3xl font-bold mb-4'>

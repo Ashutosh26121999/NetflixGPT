@@ -8,8 +8,7 @@ export const MOVIE_API_OPTION = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNzU2ZTUyZGFmZTEzMzc0NzE0N2M2MTE2Y2Y5ZWE2ZCIsIm5iZiI6MTczOTAwODA5MC4wMjMsInN1YiI6IjY3YTcyODVhNThkOTNjZWZlZGM4YWQ2OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Ne2lm2MdqNFJa-pr-1S-bdBDniVYoFfENAAxA58ykXw",
+    Authorization: "Bearer " + import.meta.env.VITE_TMDB_API_KEY,
   },
 };
 export const TMDB_API_KEY = "2756e52dafe133747147c6116cf9ea6d";
@@ -22,3 +21,5 @@ export const LANGUAGES = [
   {label: "German", code: "de"},
   {label: "French", code: "fr"},
 ];
+export const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
+export const DEEPSEEK_API_KEY = import.meta.env.VITE_DEEPSEEK_API_KEY;

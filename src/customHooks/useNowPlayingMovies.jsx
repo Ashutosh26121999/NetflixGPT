@@ -1,4 +1,4 @@
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {MOVIE_API_OPTION} from "../utils/constentValue";
 import {addNowPlayingMovies} from "../utils/Redux/moviesSlice";
 import {useEffect, useState} from "react";
@@ -7,7 +7,9 @@ function useNowPlayingMovies({pageNum = 1}) {
   // fetch now palying movies data from api
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-
+  const nowPlayingMovies = useSelector(
+    (state) => state?.movies?.nowPlayingMovies,
+  );
   const getMovies = async () => {
     try {
       setLoading(true);
@@ -24,7 +26,7 @@ function useNowPlayingMovies({pageNum = 1}) {
     }
   };
   useEffect(() => {
-    getMovies();
+    nowPlayingMovies.length === 0 && getMovies();
   }, [pageNum]);
   return [loading];
 }

@@ -1,4 +1,4 @@
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {MOVIE_API_OPTION} from "../utils/constentValue";
 import {addTrailerVideo} from "../utils/Redux/moviesSlice";
 import {useEffect, useState} from "react";
@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 function useMovieTrailer({movieId}) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const trailerVideo = useSelector((state) => state?.movies?.trailerVideo);
   const fetchMovieTrailer = async () => {
     try {
       setLoading(true);
@@ -29,7 +30,7 @@ function useMovieTrailer({movieId}) {
     }
   };
   useEffect(() => {
-    fetchMovieTrailer();
+    trailerVideo.length === 0 && fetchMovieTrailer();
   }, [movieId]);
   return [loading];
 }

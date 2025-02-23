@@ -1,11 +1,12 @@
 import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {MOVIE_API_OPTION} from "../utils/constentValue";
 import {addMovieIcon} from "../utils/Redux/moviesSlice";
 
 function useMovieIcon({movieId}) {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const movieIcon = useSelector((state) => state?.movies?.movieIcon);
   useEffect(() => {
     const fetchMovieLogo = async () => {
       try {
@@ -33,7 +34,7 @@ function useMovieIcon({movieId}) {
       }
     };
 
-    fetchMovieLogo();
+    movieIcon.length === 0 && fetchMovieLogo();
   }, [movieId]);
   return [loading];
 }

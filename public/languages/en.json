@@ -26,5 +26,6 @@
   "movieLogoAlt": "Movie logo",
   "playButton": "Play",
   "moreInfoButton": "More Info",
-  "homePage": "Homepage"
+  "homePage": "Homepage",
+  "suggestedMovies": "Suggested Movies"
 }

@@ -2,8 +2,10 @@ import {useTranslation} from "react-i18next";
 import {NETFLIX_BACKGROUND} from "../utils/constentValue";
 import GPTMoviesSuggesstion from "./GPTMoviesSuggesstion";
 import GPTSearchBar from "./GPTSearchBar";
+import {useSelector} from "react-redux";
 
 function GPTSearch() {
+  const gptSearchResult = useSelector((state) => state?.gpt?.gptSearchResult);
   const {t} = useTranslation();
   return (
     <div>
@@ -15,7 +17,7 @@ function GPTSearch() {
         />
       </div>
       <GPTSearchBar />
-      <GPTMoviesSuggesstion />
+      {gptSearchResult.length > 0 && <GPTMoviesSuggesstion />}
     </div>
   );
 }
